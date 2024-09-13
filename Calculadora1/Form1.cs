@@ -71,8 +71,10 @@ namespace Calculadora1
         private void btnApagar_Click(object sender, EventArgs e)
         {
             // Apaga tudo
+
             // txtValor.Text = "";
             int tamanho = txtValor.Text.Length;
+
 
             if (tamanho > 0)
             {
