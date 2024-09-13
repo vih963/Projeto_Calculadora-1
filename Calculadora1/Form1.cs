@@ -14,6 +14,8 @@ namespace Calculadora1
             InitializeComponent();
         }
 
+        #region Botoes Números
+
         private void btn1_Click(object sender, EventArgs e)
         {
             txtValor.Text += "1";
@@ -64,11 +66,12 @@ namespace Calculadora1
             txtValor.Text += "0";
         }
 
+        #endregion
+
         private void btnApagar_Click(object sender, EventArgs e)
         {
             // Apaga tudo
             // txtValor.Text = "";
-
             int tamanho = txtValor.Text.Length;
 
             if (tamanho > 0)
@@ -79,102 +82,71 @@ namespace Calculadora1
             }
         }
 
+        #region Operadores
+
         private void btnSomar_Click(object sender, EventArgs e)
         {
-            int numero;
+            bool ehValido = ValidaNumero();
 
-            int.TryParse(txtValor.Text, out numero);
-
-            if (numero <= 0)
+            if (ehValido)
             {
-                MessageBox.Show("Informe um número válido");
-            }
-            else
-            {
-                valor1 = numero;
+                valor1 = Convert.ToInt32(txtValor.Text); ;
 
                 lblCalculo.Text = txtValor.Text + " + ";
                 txtValor.Text = "";
                 operacao = "+";
+                btnIgual.Enabled = true;
             }
         }
 
         private void btnSubtrair_Click(object sender, EventArgs e)
         {
-            int numero;
-
-            int.TryParse(txtValor.Text, out numero);
-
-            if (numero <= 0)
+            if (ValidaNumero())
             {
-                MessageBox.Show("Informe um número válido");
-            }
-            else
-            {
-                valor1 = numero;
+                valor1 = Convert.ToInt32(txtValor.Text);
                 lblCalculo.Text = txtValor.Text + " - ";
                 txtValor.Text = "";
                 operacao = "-";
+                btnIgual.Enabled = true;
             }
         }
 
         private void btnMultiplicar_Click(object sender, EventArgs e)
         {
-            int numero;
-
-            int.TryParse(txtValor.Text, out numero);
-
-            if (numero <= 0)
+            if (ValidaNumero())
             {
-                MessageBox.Show("Informe um número válido");
-            }
-            else
-            {
-                valor1 = numero;
+                valor1 = Convert.ToInt32(txtValor.Text);
                 lblCalculo.Text = txtValor.Text + " x ";
                 txtValor.Text = "";
                 operacao = "x";
+                btnIgual.Enabled = true;
             }
         }
 
         private void btnDividir_Click(object sender, EventArgs e)
         {
-            int numero;
-
-            int.TryParse(txtValor.Text, out numero);
-
-            if (numero <= 0)
+            if (ValidaNumero())
             {
-                MessageBox.Show("Informe um número válido");
-            }
-            else
-            {
-                valor1 = numero;
+                valor1 = Convert.ToInt32(txtValor.Text);
                 lblCalculo.Text = txtValor.Text + " / ";
                 txtValor.Text = "";
                 operacao = "/";
+                btnIgual.Enabled = true;
             }
         }
 
+        #endregion
+
         private void btnIgual_Click(object sender, EventArgs e)
         {
-            int numero;
-
-            int.TryParse(txtValor.Text, out numero);
-
-            if (numero <= 0)
+            if (ValidaNumero())
             {
-                MessageBox.Show("Informe um número válido");
-            }
-            else
-            {
-                valor2 = numero;
+                valor2 = Convert.ToInt32(txtValor.Text);
 
                 string operadorSelecionado = operacao.ToLower().Replace(" ", "");
 
                 int resultado = 0;
 
-                // Usando Switch
                 switch (operadorSelecionado)
                 {
                     case "+":
@@ -199,13 +171,27 @@ namespace Calculadora1
 
                 string texto1 = string.Format("{0} {1} = {2}", lblCalculo.Text, txtValor.Text, resultado);
 
-                string text2 = $" { lblCalculo.Text } { txtValor.Text } = { resultado} ";
+                string text2 = $" {lblCalculo.Text} {txtValor.Text} = {resultado} ";
 
                 lblCalculo.Text = text2;
 
                 txtValor.Text = resultado.ToString();
-
             }
+        }
+
+        public bool ValidaNumero()
+        {
+            int numero;
+
+            int.TryParse(txtValor.Text, out numero);
+
+            if (numero <= 0)
+            {
+                MessageBox.Show("Informe um número válido");
+                return false;
+            }
+
+            return true;
         }
     }
 }

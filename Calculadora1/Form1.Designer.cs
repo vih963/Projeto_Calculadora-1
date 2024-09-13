@@ -231,6 +231,7 @@
             // btnIgual
             // 
             this.btnIgual.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIgual.Enabled = false;
             this.btnIgual.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIgual.Location = new System.Drawing.Point(232, 119);
             this.btnIgual.Name = "btnIgual";
@@ -242,6 +243,7 @@
             // 
             // txtValor
             // 
+            this.txtValor.Enabled = false;
             this.txtValor.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtValor.Location = new System.Drawing.Point(46, 60);
             this.txtValor.Name = "txtValor";
