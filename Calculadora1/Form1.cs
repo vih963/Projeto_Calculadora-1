@@ -204,6 +204,7 @@ namespace Calculadora1
                 lblCalculo.Text = text2;
 
                 txtValor.Text = resultado.ToString();
+
             }
         }
     }
